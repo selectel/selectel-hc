@@ -51,12 +51,4 @@ class TicketController extends Controller
         if (isset($result['error'])) return response()->json(['error' => $result['error']['message']]);
             else return response()->json(['message' => $result]);
     }
-
-    public function reopen(Request $request)
-    {
-        $result = $this->api_gateway->reopenTicket($request->ticket_id, $request->comment);
-
-        if (isset($result['error'])) return response()->json(['error' => $result['error']['message']]);
-        else return response()->json(['message' => $result]);
-    }
 }

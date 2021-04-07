@@ -69,15 +69,6 @@ class ApiController extends Controller
         return json_decode(json_encode($this->execApi('post', '/tickets/' . $ticket_id . '/comments', ['body' => $comment])), true);
     }
 
-    public function reopenTicket($ticket_id, $comment)
-    {
-        $data = [
-            'body' => $comment
-        ];
-
-        return json_decode(json_encode($result = $this->execApi('post', '/tickets/' . $ticket_id . '/reopen', $data)), true);
-    }
-
     public function closeTicket($ticket_id)
     {
         $data = [

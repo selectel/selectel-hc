@@ -131,6 +131,5 @@
 
 @include('layouts.tickets.close')
 @include('layouts.tickets.update')
-@include('layouts.tickets.reopen')
 
 @endsection

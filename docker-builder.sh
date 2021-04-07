@@ -1,12 +1,11 @@
 #!/bin/bash
+source .env
 
 cd app
 
 ./version-hook.sh VERSION
 
 echo "VER: $(cat VERSION)"
-
-source .env
 
 docker build -f Dockerfile-base -t ${DOCKER_REGISTRY}/selectel-hc:base .
 
