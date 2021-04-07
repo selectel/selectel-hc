@@ -6,10 +6,12 @@ cd app
 
 echo "VER: $(cat VERSION)"
 
-docker build -f Dockerfile-base -t vasyakrg/selectel-hc:base .
+source .env
 
-docker build -t vasyakrg/selectel-hc:latest .
-docker tag vasyakrg/selectel-hc:latest vasyakrg/selectel-hc:$(cat VERSION)
+docker build -f Dockerfile-base -t ${DOCKER_REGISTRY}/selectel-hc:base .
 
-docker push vasyakrg/selectel-hc:latest
-docker push vasyakrg/selectel-hc:$(cat VERSION)
+docker build -t ${DOCKER_REGISTRY}/selectel-hc:latest .
+docker tag ${DOCKER_REGISTRY}/selectel-hc:latest ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION)
+
+docker push ${DOCKER_REGISTRY}/selectel-hc:latest
+docker push ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION)

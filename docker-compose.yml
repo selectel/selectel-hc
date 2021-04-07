@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   app:
-    image: vasyakrg/selectel-hc
+    image: ${DOCKER_REGISTRY}/selectel-hc
     container_name: selectel-hc
     environment:
       XDEBUG_CONFIG: remote_host=127.0.0.1
