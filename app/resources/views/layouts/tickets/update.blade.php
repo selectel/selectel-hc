@@ -1,11 +1,4 @@
 <script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000
-    });
-
     $(document).ready(function () {
 
         $(document).on('click', '.comment-add-submit', function() {
