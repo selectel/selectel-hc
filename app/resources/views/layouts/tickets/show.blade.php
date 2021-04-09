@@ -24,8 +24,10 @@
                             <div class="info-box-content">
                                 <span class="info-box-text text-center text-muted">Статуст запроса</span>
                                 <span class="info-box-number text-center text-muted mb-0">
-                                    @if ($ticket['is_closed'])
+                                    @if ($ticket['status']['ru'] == 'Закрыт' or $ticket['status']['ru'] == 'Решен')
                                         <span class="badge bg-success">{{$ticket['status']['ru']}}</span>
+                                    @elseif ($ticket['status']['ru'] =='Отвечен')
+                                        <span class="badge bg-danger">Ждем от вас ответа</span>
                                     @else
                                         <span class="badge bg-warning">{{$ticket['status']['ru']}}</span>
                                     @endif

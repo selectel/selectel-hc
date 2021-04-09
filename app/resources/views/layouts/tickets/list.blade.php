@@ -26,7 +26,7 @@
                                     @if ($ticket['status']['ru'] == 'Закрыт' or $ticket['status']['ru'] == 'Решен')
                                         <span class="badge bg-success">{{$ticket['status']['ru']}}</span>
                                     @elseif ($ticket['status']['ru'] =='Отвечен')
-                                        <span class="badge bg-danger">{{$ticket['status']['ru']}}</span>
+                                        <span class="badge bg-danger">Ждем от вас ответа</span>
                                     @else
                                         <span class="badge bg-warning">{{$ticket['status']['ru']}}</span>
                                     @endif
@@ -41,6 +41,17 @@
                         </p>
                     @endif
                     </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <tr>
+                        <th><div><b>Легенда:</b></div></th>
+                    </tr>
+                    <td>
+                        <div><span class="badge bg-success">Такой цвет</span><span> - Запрос закрыт или решен</span></div>
+                        <div><span class="badge bg-warning">Такой цвет</span><span> - Мяч на сторона СП, ожидаем</span></div>
+                        <div><span class="badge bg-danger">Такой цвет</span><span> - СП ждет реакции от вас</span></div>
+
+                    </td>
                 </table>
             </div>
         </div>
