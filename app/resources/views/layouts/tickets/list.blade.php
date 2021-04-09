@@ -23,12 +23,12 @@
                             <tr>
                                 <td><a href="/ticket/{{$ticket['number']}}">{{$ticket['number']}}</a></td>
                                 <td>
-                                    @if ($ticket['status']['ru'] == 'Закрыт')
+                                    @if ($ticket['status']['ru'] == 'Закрыт' or $ticket['status']['ru'] == 'Решен')
                                         <span class="badge bg-success">{{$ticket['status']['ru']}}</span>
-                                    @elseif ($ticket['status']['ru'] =='Решен')
-                                        <span class="badge bg-warning">{{$ticket['status']['ru']}}</span>
-                                    @else
+                                    @elseif ($ticket['status']['ru'] =='Отвечен')
                                         <span class="badge bg-danger">{{$ticket['status']['ru']}}</span>
+                                    @else
+                                        <span class="badge bg-warning">{{$ticket['status']['ru']}}</span>
                                     @endif
                                 </td>
                                 <td>{{$ticket['summary']}}</td>

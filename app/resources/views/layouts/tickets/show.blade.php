@@ -95,13 +95,10 @@
                 </div>
                 @else
                 Стутус запроса:
-                    @if ($ticket['is_closed'])
+                    @if ($ticket['status']['ru'] == 'Закрыт' or $ticket['status']['ru'] == 'Решен')
                         <span class="badge bg-success">{{$ticket['status']['ru']}}</span>
-
-{{--                    #TODO метод не работает в API--}}
-{{--                        <div class="card-body">--}}
-{{--                            <button type="button" class="btn btn-xs btn-danger no-methods">Переоткрыть запрос</button>--}}
-{{--                        </div>--}}
+                    @elseif ($ticket['status']['ru'] =='Отвечен')
+                        <span class="badge bg-danger">Ждем от вас ответа</span>
                     @else
                         <span class="badge bg-warning">{{$ticket['status']['ru']}}</span>
                     @endif
