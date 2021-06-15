@@ -27,6 +27,7 @@ return [
     'api_settings' => [
         'api_url' => env('SELECTEL_API_URL', 'https://api.selectel.ru/support'),
         'api_token' => env('SELECTEL_API_TOKEN'),
+        'api_email_client' => env('SELECTEL_EMAIL_CLIENT')
     ],
 
     'ses' => [

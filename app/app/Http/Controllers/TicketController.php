@@ -46,7 +46,8 @@ class TicketController extends Controller
 
     public function close(Request $request)
     {
-        $result = $this->api_gateway->closeTicket($request->ticket_id);
+        if ($request->score == '10') $result = $this->api_gateway->closeTicket($request->ticket_id, $request->score);
+            else $result = $this->api_gateway->closeTicket($request->ticket_id);
 
         if (isset($result['error'])) return response()->json(['error' => $result['error']['message']]);
             else return response()->json(['message' => $result]);

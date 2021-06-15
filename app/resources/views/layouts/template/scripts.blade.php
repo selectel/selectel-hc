@@ -9,7 +9,7 @@ $.widget.bridge('uibutton', $.ui.button)
 {{--<!-- Bootstrap 4 -->--}}
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 {{--<!-- ChartJS -->--}}
-<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+{{--<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>--}}
 {{--<!-- Sparkline -->--}}
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
 {{--<!-- JQVMap -->--}}
@@ -30,7 +30,8 @@ $.widget.bridge('uibutton', $.ui.button)
 {{--<!-- AdminLTE App -->--}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
-<script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+{{--<script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>--}}
+{{--<script src="sweetalert2.all.min.js"></script>--}}
 {{--<!-- AdminLTE dashboard demo (This is only for demo purposes) -->--}}
 {{--<script src="{{ asset('dist/js/pages/dashboard.jsv') }}"></script>--}}
 {{--<!-- AdminLTE for demo purposes -->--}}

@@ -8,6 +8,7 @@ services:
       XDEBUG_CONFIG: remote_host=127.0.0.1
       SELECTEL_API_TOKEN: ${SELECTEL_API_TOKEN}
       SELECTEL_API_URL: ${SELECTEL_API_URL}
+      SELECTEL_EMAIL_CLIENT: ${SELECTEL_EMAIL_CLIENT}
       APP_ENV: development
     volumes:
       - ./app/:/var/www

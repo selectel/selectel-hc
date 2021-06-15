@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Ixudra\Curl\Facades\Curl;
+use function PHPUnit\Framework\isNull;
 
 class ApiController extends Controller
 {
@@ -24,6 +26,7 @@ class ApiController extends Controller
                 $result = Curl::to($this->api_url . $link)
                     ->withHeader('X-token: '. $this->api_token)
                     ->withData($data)
+                    ->asJson( true )
                     ->asJsonResponse()
                     ->post();
             break;
@@ -48,12 +51,25 @@ class ApiController extends Controller
 
     public function newTicket($ticket_name, $comment)
     {
-        $data = [
-            'summary' => $ticket_name,
-            'comment_body' => $comment
-        ];
+        if (! isnull(config('services.api_settings.api_email_client'))) {
+            $data = [
+                'summary' => $ticket_name,
+                'comment_body' => $comment
+            ];
+        } else {
+            $data = [
+                'summary' => $ticket_name,
+                'comment_body' => $comment,
+                'client_emails' => [
+                    config('services.api_settings.api_email_client')
+                ]
+            ];
+        }
 
-        return json_decode(json_encode($result = $this->execApi('post', '/tickets', $data)), true);
+//        return "error: create, reply to email: " . config("services.api_settings.api_email_client");
+
+        $result = $this->execApi('post', '/tickets', $data);
+        return json_decode(json_encode($result), true);
     }
 
     public function showTicket($ticket_id)
@@ -69,13 +85,17 @@ class ApiController extends Controller
         return json_decode(json_encode($this->execApi('post', '/tickets/' . $ticket_id . '/comments', ['body' => $comment])), true);
     }
 
-    public function closeTicket($ticket_id)
+    public function closeTicket($ticket_id, $score = null)
     {
-        $data = [
-            'comment' => 'Вопрос решен',
-            'score' => 10
-        ];
+        if ($score != '10') {
+            $data = null;
+        } else {
+            $data = [
+                'comment' => 'Вопрос решен',
+                'score' => 10
+            ];
+        }
 
-        return json_decode(json_encode($result = $this->execApi('post', '/tickets/' . $ticket_id . '/close', $data)), true);
+        return json_decode(json_encode($this->execApi('post', '/tickets/' . $ticket_id . '/close', $data)), true);
     }
 }

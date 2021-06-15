@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12 col">
                 <div class="row">
-                    <div class="col-12 col-sm-4">
+                    <div class="col col-md-3">
                         <div class="info-box bg-light">
                             <div class="info-box-content">
                                 <span class="info-box-text text-center text-muted">Номер заявки</span>
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col col-md-3">
                         <div class="info-box bg-light">
                             <div class="info-box-content">
                                 <span class="info-box-text text-center text-muted">Статуст запроса</span>
@@ -35,11 +35,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col col-md-3">
                         <div class="info-box bg-light">
                             <div class="info-box-content">
                                 <span class="info-box-text text-center text-muted">Дата изменения</span>
                                 <span class="info-box-number text-center text-muted mb-0">{{gmdate("Y-m-d H:i:s", strtotime($ticket['updated_at']))}} UTC</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-md-3">
+                        <div class="info-box bg-light">
+                            <div class="info-box-content">
+                                <span class="info-box-text text-center text-muted">Уведомление на</span>
+                                <span class="info-box-number text-center text-muted mb-0">@if (isset($ticket['client_emails'][0])) {{$ticket['client_emails'][0]}} @else <не указано> @endif</span>
                             </div>
                         </div>
                     </div>

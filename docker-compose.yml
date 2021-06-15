@@ -4,9 +4,9 @@ services:
     image: ${DOCKER_REGISTRY}/selectel-hc
     container_name: selectel-hc
     environment:
-      XDEBUG_CONFIG: remote_host=127.0.0.1
       SELECTEL_API_TOKEN: ${SELECTEL_API_TOKEN}
       SELECTEL_API_URL: ${SELECTEL_API_URL}
+      SELECTEL_EMAIL_CLIENT: ${SELECTEL_EMAIL_CLIENT}
     ports:
       - ${EXTERNAL_PORT}:80
     networks:

@@ -25,6 +25,9 @@ function setup_env() {
     SELECTEL_API_URL=${SELECTEL_API_URL}
     echo SELECTEL_API_URL=${SELECTEL_API_URL} >> ${LARAVEL_PATH}/.env.ext
 
+    SELECTEL_EMAIL_CLIENT=${SELECTEL_EMAIL_CLIENT}
+    echo SELECTEL_EMAIL_CLIENT=${SELECTEL_EMAIL_CLIENT} >> ${LARAVEL_PATH}/.env.ext
+
     cat ${LARAVEL_PATH}/.env.ext
 
     mo -s=${LARAVEL_PATH}/.env.ext -u ${LARAVEL_PATH}/.env.template > ${LARAVEL_PATH}/.env

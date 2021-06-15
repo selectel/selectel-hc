@@ -15,7 +15,8 @@
     <link rel="icon" href="{{ URL::asset('/favicon.png') }}" type="image/x-icon"/>
 
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.min.css') }}">--}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
