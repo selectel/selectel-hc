@@ -32,7 +32,17 @@
                                     @endif
                                 </td>
                                 <td>{{$ticket['summary']}}</td>
-                                <td>{{gmdate("Y-m-d H:i:s", strtotime($ticket['updated_at']))}} UTC</td>
+                                <td>
+                                    @if ($ticket['status']['ru'] =='Создан')
+                                        <span class="time-label-rows">{{$ticket['created_at']}}></span>
+                                    @elseif ($ticket['status']['ru'] =='Отвечен' or $ticket['status']['ru'] =='В работе' or $ticket['status']['ru'] =='Ожидает ответа' or $ticket['status']['ru'] =='Обрабатывается')
+                                        <span class="time-label-rows">{{$ticket['updated_at']}}></span>
+                                    @elseif ($ticket['status']['ru'] == 'Закрыт' or $ticket['status']['ru'] == 'Решен')
+                                        <span class="time-label-rows">{{$ticket['closed_at']}}</span>
+                                    @else
+                                    unknown status
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     @else
@@ -59,10 +69,24 @@
 </div>
 
 <script>
+
     $(document).ready(function () {
-        let table = $('#tickets-table').DataTable({
+        $('#tickets-table').DataTable({
             "order": [[ 3, "desc" ]]
         });
+
+        // TODO перебрать все даты и модифицировать с учетом TZ
+        // let cells = Array.prototype.slice.call(document.querySelectorAll('.time-label-rows'));
+        // const time = document.querySelectorAll('.time-label');
+
+        // table.before().cells.forEach(element => {
+        //     const isoString = new Date(element.textContent).toISOString();
+        //     const ruDate = ISOtoLongDate(isoString, "ru-RU");
+        //     element.textContent =  `${ruDate}`;
+        //     // console.log((element.textContent));
+        // })
     });
+
+
 </script>
 @endsection

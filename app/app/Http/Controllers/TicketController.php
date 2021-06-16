@@ -16,6 +16,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = $this->api_gateway->allTickets();
+
         return view('index', compact('tickets'));
     }
 
@@ -32,6 +33,7 @@ class TicketController extends Controller
     public function show(Request $request)
     {
         $ticket = $this->api_gateway->showTicket($request->ticket_id);
+
         return view('show_ticket', compact('ticket'));
     }
 

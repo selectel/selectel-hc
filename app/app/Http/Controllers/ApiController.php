@@ -44,7 +44,12 @@ class ApiController extends Controller
 
     public function allTickets()
     {
-        $result = $this->execApi('get', '/tickets', null);
+        $data = [
+            # TODO добавить постаничный парсинг
+            'items_per_page' => '1000'
+        ];
+
+        $result = $this->execApi('get', '/tickets', $data);
         return json_decode(json_encode($result), true)['items'];
 
     }
@@ -65,8 +70,6 @@ class ApiController extends Controller
                 ]
             ];
         }
-
-//        return "error: create, reply to email: " . config("services.api_settings.api_email_client");
 
         $result = $this->execApi('post', '/tickets', $data);
         return json_decode(json_encode($result), true);

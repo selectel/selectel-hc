@@ -3,14 +3,26 @@ source .env
 
 cd app
 
-./version-hook.sh VERSION
+[[ $1 == '--no-vers-up' ]] || ./version-hook.sh VERSION
 
 echo "VER: $(cat VERSION)"
 
-docker build -f Dockerfile-base -t ${DOCKER_REGISTRY}/selectel-hc:base .
+if [[ `uname -m` == 'arm64' ]]; then
+    DOCKER_ARGS="buildx build --platform linux/amd64 --push"
+    echo "<<< [ Warn ] Build in M1 Chip"
+else
+    DOCKER_ARGS="build"
+fi
 
-docker build -t ${DOCKER_REGISTRY}/selectel-hc:latest .
-docker tag ${DOCKER_REGISTRY}/selectel-hc:latest ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION)
+docker ${DOCKER_ARGS} -f Dockerfile-base -t ${DOCKER_REGISTRY}/selectel-hc:base .
 
-docker push ${DOCKER_REGISTRY}/selectel-hc:latest
-docker push ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION)
+docker ${DOCKER_ARGS} -t ${DOCKER_REGISTRY}/selectel-hc:latest .
+docker ${DOCKER_ARGS} -t ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION) .
+
+
+[[ ${DOCKER_ARGS} == 'build' ]] && {
+  docker tag ${DOCKER_REGISTRY}/selectel-hc:latest ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION)
+
+  docker push ${DOCKER_REGISTRY}/selectel-hc:latest
+  docker push ${DOCKER_REGISTRY}/selectel-hc:$(cat VERSION)
+}

@@ -9,6 +9,7 @@ services:
       SELECTEL_API_TOKEN: ${SELECTEL_API_TOKEN}
       SELECTEL_API_URL: ${SELECTEL_API_URL}
       SELECTEL_EMAIL_CLIENT: ${SELECTEL_EMAIL_CLIENT}
+
       APP_ENV: development
     volumes:
       - ./app/:/var/www

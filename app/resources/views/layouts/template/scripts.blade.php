@@ -65,4 +65,11 @@ $.widget.bridge('uibutton', $.ui.button)
         return retVal;
     }
 
+    function ISOtoLongDate(isoString, locale = "en-US") {
+        const options = { month: "long", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short"};
+        const date = new Date(isoString);
+        const longDate = new Intl.DateTimeFormat(locale, options).format(date);
+        return longDate;
+    }
+
 </script>

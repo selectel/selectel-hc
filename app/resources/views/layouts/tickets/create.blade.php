@@ -24,9 +24,9 @@
                             <label for="crate-comment">Подробно опишите проблему</label>
                             <textarea id="create-comment" class="form-control" rows="4"></textarea>
                         </div>
-                        <p>
-                            <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> File..</a>
-                        </p>
+{{--                        <p>--}}
+{{--                            <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> File..</a>--}}
+{{--                        </p>--}}
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="submit" class="btn btn-success create-ticket-submit" data-dismiss="modal">Открыть</button>
