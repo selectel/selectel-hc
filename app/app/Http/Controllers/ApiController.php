@@ -91,7 +91,7 @@ class ApiController extends Controller
     public function closeTicket($ticket_id, $score = null)
     {
         if ($score != '10') {
-            $data = null;
+            $data = [''];
         } else {
             $data = [
                 'comment' => 'Вопрос решен',

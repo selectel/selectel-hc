@@ -34,11 +34,15 @@
                                 <td>{{$ticket['summary']}}</td>
                                 <td>
                                     @if ($ticket['status']['ru'] =='Создан')
-                                        <span class="time-label-rows">{{$ticket['created_at']}}></span>
-                                    @elseif ($ticket['status']['ru'] =='Отвечен' or $ticket['status']['ru'] =='В работе' or $ticket['status']['ru'] =='Ожидает ответа' or $ticket['status']['ru'] =='Обрабатывается')
-                                        <span class="time-label-rows">{{$ticket['updated_at']}}></span>
-                                    @elseif ($ticket['status']['ru'] == 'Закрыт' or $ticket['status']['ru'] == 'Решен')
-                                        <span class="time-label-rows">{{$ticket['closed_at']}}</span>
+                                        {{$ticket['created_at']}}
+                                    @elseif ($ticket['status']['ru'] =='Отвечен'
+                                        or $ticket['status']['ru'] =='В работе'
+                                        or $ticket['status']['ru'] =='Ожидает ответа'
+                                        or $ticket['status']['ru'] =='Обрабатывается'
+                                        or $ticket['status']['ru'] == 'Решен')
+                                        {{$ticket['updated_at']}}
+                                    @elseif ($ticket['status']['ru'] == 'Закрыт')
+                                        {{$ticket['closed_at']}}
                                     @else
                                     unknown status
                                     @endif
@@ -72,19 +76,33 @@
 
     $(document).ready(function () {
         $('#tickets-table').DataTable({
-            "order": [[ 3, "desc" ]]
+            "order": [[ 0, "desc" ]],
+            language: {
+                search: "Найти:",
+                show: "Показать",
+                entries: "строк",
+                paginate: {
+                    first:      "Начало",
+                    previous:   "Предыдущая",
+                    next:       "Следующая",
+                    last:       "Конец"
+                },
+                lengthMenu:    "Показать по _MENU_ строк",
+                info:           "Показано с _START_ по _END_ из _TOTAL_ строк",
+                infoEmpty:      "Ничего не найдено",
+                infoFiltered:   "(Всего _MAX_ элемент(ов))",
+                infoPostFix:    "",
+                zeroRecords:    "Нет данных"
+            },
+            "columnDefs": [{
+                targets:3,
+                render:function(data){
+                    const isoString = new Date(data).toISOString();
+                    const ruDate = ISOtoLongDate(isoString, "ru-RU");
+                    return `${ruDate}`
+                }
+            }]
         });
-
-        // TODO перебрать все даты и модифицировать с учетом TZ
-        // let cells = Array.prototype.slice.call(document.querySelectorAll('.time-label-rows'));
-        // const time = document.querySelectorAll('.time-label');
-
-        // table.before().cells.forEach(element => {
-        //     const isoString = new Date(element.textContent).toISOString();
-        //     const ruDate = ISOtoLongDate(isoString, "ru-RU");
-        //     element.textContent =  `${ruDate}`;
-        //     // console.log((element.textContent));
-        // })
     });
 
 

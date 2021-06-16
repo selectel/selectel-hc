@@ -24,7 +24,6 @@
                             '_token': $('input[name=_token]').val(),
                         },
                         success: function(response) {
-                            console.log(response);
                             if (typeof response['error'] !== 'undefined')
                                 Toast.fire({
                                     icon: 'error',
@@ -35,7 +34,6 @@
                         },
                         error: function(response) {
                             let errors = response.responseJSON;
-                            console.log('+0: ' +errors);
                             Toast.fire({
                                 icon: 'error',
                                 title: 'Изменение НЕ произведено!',
@@ -53,7 +51,6 @@
                             'score': '10'
                         },
                         success: function(response) {
-                            console.log('+10: ' + response);
                             if (typeof response['error'] !== 'undefined')
                                 Toast.fire({
                                     icon: 'error',
