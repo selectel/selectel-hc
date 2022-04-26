@@ -1,9 +1,9 @@
 version: '3.7'
 services:
   app:
-    image: ${DOCKER_REGISTRY}/php7-tools:latest
+    image: ${DOCKER_REGISTRY}/php:7.4
     container_name: selectel-hc-dev
-    command: php artisan serve --host=0.0.0.0 --port=80
+    # command: php artisan serve --host=0.0.0.0 --port=80
     environment:
       XDEBUG_CONFIG: remote_host=127.0.0.1
       SELECTEL_API_TOKEN: ${SELECTEL_API_TOKEN}
